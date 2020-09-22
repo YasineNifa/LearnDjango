@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%block content%}
+	<h1>About Page</h1>
+	<p>About Template</p>
+
+	<p>
+		{{ my_text|capfirst|upper|title }},{{my_number}}
+	</p>
+	{{my_html|safe}}
+	<ul>
+		{% for item in my_list %}
+			<li>
+				{% if item == 4 %}
+					{{forloop.counter}} - {{item|add:2}}
+				{% else %}
+					{{forloop.counter}} - {{item}}
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+{%endblock%}

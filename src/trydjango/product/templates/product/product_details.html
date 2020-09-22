@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+
+{%block content%}
+<h1>
+	{%if object.price < 10000%}
+		{{object.title}}
+		<h3>
+			<li>{{object.description}}</li>
+			<li>{{object.price}}</li>
+		</h3>
+	{%endif%}
+</h1>
+{%endblock%}
