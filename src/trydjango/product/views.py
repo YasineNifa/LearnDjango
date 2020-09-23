@@ -19,7 +19,7 @@ def product_detail_view(request, *args,**kwargs):
 	return render(request,'product/detail.html',context)
 
 
-
+#First
 # def product_create_view(request, *args,**kwargs):
 # 	form = ProductForm(request.POST or None)
 # 	if form.is_valid():
@@ -38,6 +38,7 @@ def product_detail_view(request, *args,**kwargs):
 # 	context = {}
 # 	return render(request,'product/product_create.html',context)
 
+#Second
 def product_create_view(request, *args,**kwargs):
 	# By default inside the RawProductForm is request.GET
 	form = RawProductForm()
