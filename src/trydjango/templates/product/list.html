@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Our products are :</h1>
+{%for item in all_products%}
+	<li><a href="../{{item.id}}/">{{item.title}}</a>
+{%endfor%}
+{% endblock %}
