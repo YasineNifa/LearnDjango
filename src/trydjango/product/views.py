@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product
 
-from .forms import ProductForm, RawProductForm
+from .forms import ProductForm
 
 # Create your views here.
 
@@ -20,15 +20,17 @@ def product_detail_view(request, *args,**kwargs):
 
 
 #First
-# def product_create_view(request, *args,**kwargs):
-# 	form = ProductForm(request.POST or None)
-# 	if form.is_valid():
-# 		form.save()
-# 		form = ProductForm()
-# 	context = {
-# 		'form':form
-# 	}
-# 	return render(request,'product/product_create.html',context)
+def product_create_view(request, *args,**kwargs):
+	form = ProductForm()
+	if request.method == "POST":
+		form = ProductForm(request.POST)
+		if form.is_valid():
+			form.save()
+			form = ProductForm()
+	context = {
+		'form':form
+	}
+	return render(request,'product/product_create.html',context)
 
 
 # def product_create_view(request, *args,**kwargs):
@@ -39,20 +41,20 @@ def product_detail_view(request, *args,**kwargs):
 # 	return render(request,'product/product_create.html',context)
 
 #Second
-def product_create_view(request, *args,**kwargs):
-	# By default inside the RawProductForm is request.GET
-	form = RawProductForm()
-	if request.method=="POST":
-		form = RawProductForm(request.POST)
-		if form.is_valid():
-			# form.save() does not exist in the forms.Form
-			print(form.cleaned_data)
-			#** turn form.cleaned_data as an argument that we gonna pass
-			Product.objects.create(**form.cleaned_data)
-			form = RawProductForm()
-		else:
-			print(form.errors)
-	context = {
-		"form":form
-	}
-	return render(request,'product/product_create.html',context)
+# def product_create_view(request, *args,**kwargs):
+# 	# By default inside the RawProductForm is request.GET
+# 	form = RawProductForm()
+# 	if request.method=="POST":
+# 		form = RawProductForm(request.POST)
+# 		if form.is_valid():
+# 			# form.save() does not exist in the forms.Form
+# 			print(form.cleaned_data)
+# 			#** turn form.cleaned_data as an argument that we gonna pass
+# 			Product.objects.create(**form.cleaned_data)
+# 			form = RawProductForm()
+# 		else:
+# 			print(form.errors)
+# 	context = {
+# 		"form":form
+# 	}
+# 	return render(request,'product/product_create.html',context)
