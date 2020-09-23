@@ -6,6 +6,19 @@ from .forms import ProductForm
 
 # Create your views here.
 
+def dynamic_lookup_view(request,id):
+	obj = Product.objects.get(id=id)
+	context={
+		"object":obj
+	}
+	return render(request,"product/detail.html",context)
+
+
+
+
+
+
+
 def product_detail_view(request, *args,**kwargs):
 	obj = Product.objects.get(id=1)
 	# context = {
